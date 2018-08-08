@@ -22,12 +22,12 @@ class BinanceController extends Controller
      */
     public function homeAction()
     {
-        return $this->render('default/index.html.twig');
+        return $this->render('default/home.html.twig');
 
     }
 
     /**
-     * @Route(path="/price", name="path_price")
+     * @Route(path="/getprice", name="path_price")
      */
     public function listOfPricesAction()
     {
@@ -81,4 +81,21 @@ class BinanceController extends Controller
     }
 
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route(path="/", name="home")
+     */
+    public function listAllPricesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $prices = $em->getRepository(Price::class)
+                    ->findAll();
+
+        //dump($prices);exit;
+
+        return $this->render('default/home.html.twig', [
+            'prices'=> $prices
+        ]);
+
+    }
 }

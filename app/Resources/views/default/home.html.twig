@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}LADANI{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{asset('build/app.css') }}">
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <div class="container">
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-2">
+                <h1>Ladani</h1>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <table class="table">
+                <thead class="table-info">
+                    <tr>
+                        <th scope="col">Symbol</th>
+                        <th scope="col">priceChange</th>
+                        <th scope="col">priceChangePercent</th>
+                        <th scope="col">weightedAvgPrice</th>
+                        <th scope="col">prevClosePrice</th>
+                        <th scope="col">lastPrice</th>
+                        <th scope="col">lastQty</th>
+                        <th scope="col">bidPrice</th>
+                        <th scope="col">askPrice</th>
+                        <th scope="col">openPrice</th>
+                        <th scope="col">highPrice</th>
+                        <th scope="col">lowPrice</th>
+                        <th scope="col">volume</th>
+                        <th scope="col">quoteVolume</th>
+                    </tr>
+                </thead>
+                <tbody class="table-light">
+                {% for price in prices %}
+                    <tr>
+                        <td>
+                            {{ price.Symbol }}
+                        </td>
+                        <td>
+                            {{ price.priceChange }}
+                        </td>
+                        <td>
+                            {{ price.priceChangePercent }}
+                        </td>
+                        <td>
+                            {{ price.weightedAvgPrice }}
+                        </td>
+                        <td>
+                            {{ price.prevClosePrice }}
+                        </td>
+                        <td>
+                            {{ price.lastPrice }}
+                        </td>
+                        <td>
+                            {{ price.lastQty }}
+                        </td>
+                        <td>
+                            {{ price.bidPrice }}
+                        </td>
+                        <td>
+                            {{ price.askPrice }}
+                        </td>
+                        <td>
+                            {{ price.openPrice }}
+                        </td>
+                        <td>
+                            {{ price.highPrice }}
+                        </td>
+                        <td>
+                            {{ price.lowPrice }}
+                        </td>
+                        <td>
+                            {{ price.volume }}
+                        </td>
+                        <td>
+                            {{ price.quoteVolume }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>
