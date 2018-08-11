@@ -3,13 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * Class Price
  * @package AppBundle\Entity
  *
- * @ORM\Entity()
- * @ORM\Table()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PriceRepository")
+ * @ORM\Table(name="price")
  */
 class Price
 {
@@ -24,6 +25,11 @@ class Price
      * @ORM\Column(type="string")
      */
     private $symbol;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $pricedate;
 
     /**
      * @ORM\Column(type="float")
@@ -124,6 +130,12 @@ class Price
      * @ORM\Column(type="integer")
      */
     private $count;
+
+    public function __construct()
+    {
+
+        $this->pricedate = date('d/m/y', strtotime('-1 day'));
+    }
 
     /**
      * @return mixed
@@ -469,4 +481,28 @@ class Price
         $this->count = $count;
     }
 
+
+    /**
+     * Set pricedate.
+     *
+     * @param \DateTime $pricedate
+     *
+     * @return Price
+     */
+    public function setPricedate($pricedate)
+    {
+        $this->pricedate = $pricedate;
+
+        return $this;
+    }
+
+    /**
+     * Get pricedate.
+     *
+     * @return \DateTime
+     */
+    public function getPricedate()
+    {
+        return $this->pricedate;
+    }
 }

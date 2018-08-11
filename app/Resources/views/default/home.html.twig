@@ -10,91 +10,42 @@
 </head>
 <body>
 {% block body %}
-    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <a class="navbar-brand" href="/">Ladani</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/prices/24d" value="">Prices 24hr</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="prices/3d">Prices 3d</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="prices/5d">Prices 5d</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
         <br>
         <br>
-        <div class="row">
-            <div class="col-md-6">
-
-            </div>
-            <div class="col-md-2">
-                <h1>Ladani</h1>
-            </div>
+        <div class="jumbotron">
+            <h1 class="display-4">Ladani</h1>
+            <p class="lead">Simple app to help you make the right crypto investment</p>
+            <hr class="my-4">
+            <p>Follow the link and see the different analysis</p>
+            <a class="btn btn-info btn-lg" href="#" role="button">Learn More</a>
         </div>
         <br>
         <br>
-        <div class="row">
-            <table class="table">
-                <thead class="table-info">
-                    <tr>
-                        <th scope="col">Symbol</th>
-                        <th scope="col">priceChange</th>
-                        <th scope="col">priceChangePercent</th>
-                        <th scope="col">weightedAvgPrice</th>
-                        <th scope="col">prevClosePrice</th>
-                        <th scope="col">lastPrice</th>
-                        <th scope="col">lastQty</th>
-                        <th scope="col">bidPrice</th>
-                        <th scope="col">askPrice</th>
-                        <th scope="col">openPrice</th>
-                        <th scope="col">highPrice</th>
-                        <th scope="col">lowPrice</th>
-                        <th scope="col">volume</th>
-                        <th scope="col">quoteVolume</th>
-                    </tr>
-                </thead>
-                <tbody class="table-light">
-                {% for price in prices %}
-                    <tr>
-                        <td>
-                            {{ price.Symbol }}
-                        </td>
-                        <td>
-                            {{ price.priceChange }}
-                        </td>
-                        <td>
-                            {{ price.priceChangePercent }}
-                        </td>
-                        <td>
-                            {{ price.weightedAvgPrice }}
-                        </td>
-                        <td>
-                            {{ price.prevClosePrice }}
-                        </td>
-                        <td>
-                            {{ price.lastPrice }}
-                        </td>
-                        <td>
-                            {{ price.lastQty }}
-                        </td>
-                        <td>
-                            {{ price.bidPrice }}
-                        </td>
-                        <td>
-                            {{ price.askPrice }}
-                        </td>
-                        <td>
-                            {{ price.openPrice }}
-                        </td>
-                        <td>
-                            {{ price.highPrice }}
-                        </td>
-                        <td>
-                            {{ price.lowPrice }}
-                        </td>
-                        <td>
-                            {{ price.volume }}
-                        </td>
-                        <td>
-                            {{ price.quoteVolume }}
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        <br>
+        <br>
     </div>
 {% endblock %}
+</body>
 {% block javascripts %}{% endblock %}
 </body>
 </html>

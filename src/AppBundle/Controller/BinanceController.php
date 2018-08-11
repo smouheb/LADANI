@@ -11,7 +11,9 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Price;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Date;
 
 class BinanceController extends Controller
 {
@@ -83,19 +85,46 @@ class BinanceController extends Controller
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route(path="/", name="home")
+     * @Route(path="/prices/{type}", name="prices")
      */
-    public function listAllPricesAction()
+    public function listAllPricesAction($type)
     {
+
         $em = $this->getDoctrine()->getManager();
+
+        if($type == '3d'){
+
+            $pricedate = Date('d/m/y', strtotime('-3 days'));
+
+            $prices = $em->getRepository(Price::class)
+                         ->listOfPrices($pricedate);
+
+
+
+        } elseif ($type == '5d'){
+
+            $pricedate = Date('d/m/y', strtotime('-5 days'));
+
+            $prices = $em->getRepository(Price::class)
+                ->listOfPrices($pricedate);
+
+
+        }
         $prices = $em->getRepository(Price::class)
                     ->findAll();
 
-        //dump($prices);exit;
-
-        return $this->render('default/home.html.twig', [
+        return $this->render('default/lastdayprice.html.twig', [
             'prices'=> $prices
         ]);
+
+    }
+
+    /**
+     * @Route(path="price3d", name="pricesfrom3days")
+     */
+    public function otherPriceDatesAction()
+    {
+
 
     }
 }
